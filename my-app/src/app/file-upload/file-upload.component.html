@@ -1,0 +1,31 @@
+<div class="flex items-center flex-col">
+    <label for=""></label>
+  <input
+    #file
+    type="file"
+    accept="image/*"
+
+    class="mt-6 flex items-center justify-center bg-slate-50"
+    (change)="preview(file.files)"
+  />
+  <div class="flex w-full flex-row gap-5">
+    <img
+      [src]="image"
+      class="h-44 w-44 rounded-md"
+      *ngFor="let image of images; let i = index"
+    />
+  </div>
+
+  <button (click)="onUpload()" class="btn btn-success">Upload</button>
+</div>
+
+<!-- Shareable short link of  uploaded file -->
+<div class="container text-center jumbotron" *ngIf="shortLink">
+  <h2>Visit Here</h2>
+  <a href="{{ shortLink }}">{{ shortLink }}</a>
+</div>
+
+<!--Flag variable is used here-->
+<div class="container" *ngIf="loading">
+  <h3>Loading ...</h3>
+</div>
